@@ -1028,8 +1028,6 @@ public class Config extends HashMap<String, Object> {
         conf.put(Config.TOPOLOGY_FALL_BACK_ON_JAVA_SERIALIZATION, fallback);
     }    
 
-
-
     public void setFallBackOnJavaSerialization(boolean fallback) {
         setFallBackOnJavaSerialization(this, fallback);
     }    
