@@ -153,5 +153,6 @@ topology.tuple.serializer: "backtype.storm.serialization.types.ListDelegateSeria
 topology.trident.batch.emit.interval.millis: 500
 topology.classpath: null
 topology.environment: null
+topology.test.timeout_ms: 5000
 
 dev.zookeeper.path: "/tmp/dev-storm-zookeeper"

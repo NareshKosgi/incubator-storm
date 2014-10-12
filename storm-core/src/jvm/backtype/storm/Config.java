@@ -801,6 +801,11 @@ public class Config extends HashMap<String, Object> {
     public static final Object TOPOLOGY_SHELLBOLT_MAX_PENDING_SCHEMA = ConfigValidation.IntegerValidator;
 
     /**
+     * Configurable topology timeout for testing
+     */
+    public static final String TOPOLOGY_TEST_TIMEOUT="topology.test.timeout_ms";
+
+    /**
      * The root directory in ZooKeeper for metadata about TransactionalSpouts.
      */
     public static final String TRANSACTIONAL_ZOOKEEPER_ROOT="transactional.zookeeper.root";
@@ -901,6 +906,10 @@ public class Config extends HashMap<String, Object> {
         conf.put(Config.TOPOLOGY_ACKER_EXECUTORS, numExecutors);
     }
 
+    public static void setTestTimeout(Map conf, int ms) {
+        conf.put(Config.TOPOLOGY_TEST_TIMEOUT, ms);
+    }
+
     public void setNumAckers(int numExecutors) {
         setNumAckers(this, numExecutors);
     }
@@ -912,7 +921,11 @@ public class Config extends HashMap<String, Object> {
     public void setMessageTimeoutSecs(int secs) {
         setMessageTimeoutSecs(this, secs);
     }
-    
+
+    public void setTopologyTestTimeout(int ms) {
+       setTestTimeout(this, ms);
+    }
+
     public static void registerSerialization(Map conf, Class klass) {
         getRegisteredSerializations(conf).add(klass.getName());
     }
@@ -1014,6 +1027,8 @@ public class Config extends HashMap<String, Object> {
     public static void setFallBackOnJavaSerialization(Map conf, boolean fallback) {
         conf.put(Config.TOPOLOGY_FALL_BACK_ON_JAVA_SERIALIZATION, fallback);
     }    
+
+
 
     public void setFallBackOnJavaSerialization(boolean fallback) {
         setFallBackOnJavaSerialization(this, fallback);
